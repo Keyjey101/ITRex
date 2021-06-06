@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belarus ruble</title>
+</head>
+<body>
+    <div id='head' style='margin: auto; width: 50%;text-align: center'>
+<h3>Official exchange rate of the Belarusian ruble in relation to foreign currencies</h3>
+
+<div id='app' > 
+Fetcing in a second...
+</div>
+</div>
+    <script>
+(function() {
+
+    let array = setInterval(async () => {
+
+const place = document.getElementById('app')
+
+let res = await fetch('https://www.nbrb.by/API/ExRates/Rates?Periodicity=0')
+
+let array = await res.json()
+const data = array.map((currencie) => {
+    
+    return `<p>${currencie.Cur_Scale} ${currencie.Cur_Abbreviation} is equal to ${currencie.Cur_OfficialRate} Br </p>`
+})
+
+place.innerHTML = data.join(' ')
+
+}, 1000)
+
+})()
+    </script>
+    
+</body>
+</html>
