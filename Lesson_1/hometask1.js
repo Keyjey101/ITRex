@@ -1,48 +1,41 @@
 "use strict";
 
 class Car {
-  //constants
-  #limit = 5;
-  #average = 3;
+  #maxHelpValue = 5;
+  #goodDirverHelpValue = 3;
   //constructor with default settings
   constructor(
-    ABS = this.#limit,
-    Traction = this.#limit,
-    Stability = this.#limit
+    abs = this.#maxHelpValue,
+    traction = this.#maxHelpValue,
+    stability = this.#maxHelpValue
   ) {
-    this.abs = ABS > this.#limit || ABS <= 0 ? this.#limit : ABS;
+    this.abs = abs > this.#maxHelpValue || abs <= 0 ? this.#maxHelpValue : abs;
     this.Traction =
-      Traction > this.#limit || Traction <= 0 ? this.#limit : Traction;
+      traction > this.#maxHelpValue || traction <= 0 ? this.#maxHelpValue : traction;
     this.Stability =
-      Stability > this.#limit || Stability <= 0 ? this.#limit : Stability;
-  }
-  //get method to use props as simple object
-  get props() {
-    return this.#carProps();
-  }
-  //private method
-  #carProps() {
-    const car = {
+      stability > this.#maxHelpValue || stability <= 0 ? this.#maxHelpValue : stability;
+  } 
+  get carProps() {
+    return {
       ABS: this.abs,
-      "Traction Control": this.Traction,
-      Stability: this.Stability,
+      "Traction Control": this.traction,
+      Stability: this.stability,
     };
-    return car;
   }
   #checker(num) {
-    if (num <= 0 || num > this.#limit)
+    if (num <= 0 || num > this.#maxHelpValue)
       throw new Error(
-        `cannot set ${num}. Value must be in range from 0 to ${this.#limit}`
+        `cannot set ${num}. Value must be in range from 0 to ${this.#maxHelpValue}`
       );
   }
   //setters
   setTraction(num) {
     this.#checker(num);
-    return (this.Traction = num);
+    return (this.traction = num);
   }
   setStability(num) {
     this.#checker(num);
-    return (this.Stability = num);
+    return (this.stability = num);
   }
   setABS(num) {
     this.#checker(num);
@@ -54,15 +47,15 @@ class Car {
     this.setABS(param);
     console.log(
       "Settings have been changed, and now there are like:",
-      this.#carProps()
+      this.carProps
     );
   }
 
   setDriverAsBeginner() {
-    this.#setAllParams(this.#limit);
+    this.#setAllParams(this.#maxHelpValue);
   }
   setDriverAsGoodDriver() {
-    this.#setAllParams(this.#average);
+    this.#setAllParams(this.#goodDirverHelpValue);
   }
   setDriverAsManiac() {
     this.#setAllParams(1);
