@@ -1,19 +1,20 @@
 "use strict";
 
 class Car {
-  #maxHelpValue = 5;
+  #beginnerHelpValue = 5;
   #goodDirverHelpValue = 3;
+  #maniacHelpValue = 1;
   //constructor with default settings
   constructor(
-    abs = this.#maxHelpValue,
-    traction = this.#maxHelpValue,
-    stability = this.#maxHelpValue
+    abs = this.#beginnerHelpValue,
+    traction = this.#beginnerHelpValue,
+    stability = this.#beginnerHelpValue
   ) {
-    this.abs = abs > this.#maxHelpValue || abs <= 0 ? this.#maxHelpValue : abs;
+    this.abs = abs > this.#beginnerHelpValue || abs <= 0 ? this.#beginnerHelpValue : abs;
     this.Traction =
-      traction > this.#maxHelpValue || traction <= 0 ? this.#maxHelpValue : traction;
+      traction > this.#beginnerHelpValue || traction <= 0 ? this.#beginnerHelpValue : traction;
     this.Stability =
-      stability > this.#maxHelpValue || stability <= 0 ? this.#maxHelpValue : stability;
+      stability > this.#beginnerHelpValue || stability <= 0 ? this.#beginnerHelpValue : stability;
   } 
   get carProps() {
     return {
@@ -23,9 +24,9 @@ class Car {
     };
   }
   #checker(num) {
-    if (num <= 0 || num > this.#maxHelpValue)
+    if (num <= 0 || num > this.#beginnerHelpValue)
       throw new Error(
-        `cannot set ${num}. Value must be in range from 0 to ${this.#maxHelpValue}`
+        `cannot set ${num}. Value must be in range from 0 to ${this.#beginnerHelpValue}`
       );
   }
   //setters
@@ -52,13 +53,13 @@ class Car {
   }
 
   setDriverAsBeginner() {
-    this.#setAllParams(this.#maxHelpValue);
+    this.#setAllParams(this.#beginnerHelpValue);
   }
   setDriverAsGoodDriver() {
     this.#setAllParams(this.#goodDirverHelpValue);
   }
   setDriverAsManiac() {
-    this.#setAllParams(1);
+    this.#setAllParams(this.#maniacHelpValue);
   }
 }
 
