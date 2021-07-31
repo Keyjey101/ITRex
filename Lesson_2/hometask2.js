@@ -1,4 +1,4 @@
-function generateVolumes(pages = [1, 2, 1], volumes = 2) {
+function generateVolumes(pages, volumes) {
   let lower = Math.max(...pages) - 1;
   let highest = pages.reduce((acc, current) => acc + current);
 
@@ -24,5 +24,5 @@ function generateVolumes(pages = [1, 2, 1], volumes = 2) {
 
   return highest;
 }
-console.log(generateVolumes());
+
 console.log(generateVolumes([1, 2, 1, 1], 3));

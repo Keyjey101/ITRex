@@ -1,10 +1,10 @@
-function findKayakAmount(n =[50, 74, 60, 82],k = 135) {
+function findKayakAmount(groupArray,maxLoad) {
     let amountOfKayks = 0;
-    let arrWeight = n.sort((a, b) => a - b);
+    let arrWeight = groupArray.sort((a, b) => a - b);
     let i = 0;
     let j = arrWeight.length - 1;
     while (i <= j) {
-        if (arrWeight[i] + arrWeight[j] <= k) {
+        if (arrWeight[i] + arrWeight[j] <= maxLoad) {
             i++;
         }
         j--;
@@ -12,6 +12,6 @@ function findKayakAmount(n =[50, 74, 60, 82],k = 135) {
     }
     return amountOfKayks;
 }
-console.log(findKayakAmount())
+
 console.log(findKayakAmount([50, 120, 74, 60, 100, 82], 135))
  
