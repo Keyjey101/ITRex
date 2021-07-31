@@ -10,6 +10,7 @@
   "author": "keyjey.danilov@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "generate-magic-square": "^1.0.0"
   }
 }
