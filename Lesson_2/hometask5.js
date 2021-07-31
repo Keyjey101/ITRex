@@ -1,6 +1,6 @@
 function findKayakAmount(groupArray,maxLoad) {
     let amountOfKayks = 0;
-    let arrWeight = groupArray.sort((a, b) => a - b);
+    const arrWeight = groupArray.sort((a, b) => a - b);
     let i = 0;
     let j = arrWeight.length - 1;
     while (i <= j) {
