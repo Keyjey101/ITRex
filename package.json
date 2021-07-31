@@ -8,5 +8,8 @@
     "solve": "node app.js"
   },
   "author": "keyjey.danilov@gmail.com",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "generate-magic-square": "^1.0.0"
+  }
 }
