@@ -16,24 +16,16 @@ class StringFormatterDeleteNumbers extends StringFormatter {
       let numberSet = new Set();
       let strArr = str.split('');
 
-      let filtredStr = strArr.filter((elem) => {
-          if (!Number.isNaN(+elem)) {
+      let filteredStr = strArr.filter((elem) => {
+        if(Number.isNaN(+elem)) return true;
 
-              if (numberSet.has(+elem)) {
-                  return false;
-              }
-              else {
-                  numberSet.add(+elem);
-                  return true;
-              }
+        if (numberSet.has(+elem)) return false;
 
-          } else {
+        numberSet.add(+elem);
+        return true;
+})
 
-              return true;
-          }
-      })
-
-      return filtredStr.join('');
+      return filteredStr.join('');
   }
 }
 
@@ -52,12 +44,8 @@ class StringFormatterDeleteDates extends StringFormatter {
 
           str = str.replace(new RegExp(elem, 'g'), (match, offset) => {
 
-              if (offset !== startIndex) {
-                  return '';
-              }
-              else {
-                  return elem;
-              }
+            return offset !== startIndex ? '' : elem 
+              
           })
       })
 
@@ -84,12 +72,8 @@ class StringFormatterDeleteRegExp extends StringFormatter {
 
           str = str.replace(new RegExp(elem, 'g'), (match, offset) => {
 
-              if (offset !== startIndex) {
-                  return '';
-              }
-              else {
-                  return elem;
-              }
+             return offset !== startIndex ? '' : elem 
+              
           })
       })
 
