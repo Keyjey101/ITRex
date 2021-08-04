@@ -1,0 +1,34 @@
+<%- include('header') -%>
+  <div class="box" id="heading">
+    <h1> <%=currentPatient ? 'current patient is ' + currentPatient.name : 'Queue is empty'%>
+    </h1>
+  </div>
+  <div class="box">
+
+
+    <form action="/api/queue" method="POST" class="item">
+      <input type="text" name="newPatient" placeholder="New patient" autofocus autocomplete="off">
+      <button type="submit" value="<%=currentPatient%>">Add</button>
+
+    </form>
+  </div>
+  </div>
+
+  <div class="box">
+
+
+    <form action="/api/queue" method="GET" class="item">
+      <input type="text" name="patient" placeholder="enter name" autocomplete="off">
+      <button type="submit">find</button>
+    </form>
+  </div>
+  <div>
+
+    <p>
+      <% if (currentDiagnose) { %>
+        diagnose for <%=currentDiagnose.name%> is <%= currentDiagnose?.diagnose %>
+            <%}%>
+    </p>
+  </div>
+
+  </div>
