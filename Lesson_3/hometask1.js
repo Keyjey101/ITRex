@@ -1,0 +1,94 @@
+class StringFormatter {
+
+  removeNonUniqueChars(str) {
+      let setString = new Set(str);
+      let arrayString = [...setString];
+
+      return arrayString.join('');
+  }
+}
+
+
+
+class StringFormatterDeleteNumbers extends StringFormatter {
+
+  removeNonUniqueChars(str) {
+      let numberSet = new Set();
+      let strArr = str.split('');
+
+      let filteredStr = strArr.filter((elem) => {
+        if(Number.isNaN(+elem)) return true;
+
+        if (numberSet.has(+elem)) return false;
+
+        numberSet.add(+elem);
+        return true;
+})
+
+      return filteredStr.join('');
+  }
+}
+
+
+
+class StringFormatterDeleteDates extends StringFormatter {
+
+  removeNonUniqueChars(str) {
+      let reg = /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d/g;
+      let dataArr = str.match(reg);
+      let uniqDateArr = Array.from(new Set(dataArr));
+
+      uniqDateArr.forEach(elem => {
+
+          let startIndex = str.indexOf(elem);
+
+          str = str.replace(new RegExp(elem, 'g'), (match, offset) => {
+
+            return offset !== startIndex ? '' : elem 
+              
+          })
+      })
+
+      return str;
+  }
+}
+
+
+
+class StringFormatterDeleteRegExp extends StringFormatter {
+
+  constructor(strToDelete) {
+      super();
+      this.reg = new RegExp(strToDelete, 'g');
+  }
+
+  removeNonUniqueChars(str) {
+      let strArray = str.match(this.reg);
+      let uniqStrArray = Array.from(new Set(strArray));
+
+      uniqStrArray.forEach(elem => {
+
+          let startIndex = str.indexOf(elem);
+
+          str = str.replace(new RegExp(elem, 'g'), (match, offset) => {
+
+             return offset !== startIndex ? '' : elem 
+              
+          })
+      })
+
+      return str;
+  }
+}
+
+
+
+let stringFormatter = new StringFormatter;
+let stringFormatterDeleteNumbers = new StringFormatterDeleteNumbers;
+let stringFormatterDeleteDates = new StringFormatterDeleteDates;
+let stringFormatterDeleteRegExp = new StringFormatterDeleteRegExp('abc');
+
+console.log(stringFormatter.removeNonUniqueChars('aaabbbbccccdddd'));
+console.log(stringFormatterDeleteNumbers.removeNonUniqueChars('abc1211'));
+console.log(stringFormatterDeleteDates.removeNonUniqueChars('11/11/2005  11/11/2005 123 12/12/2005 dew'))
+console.log(stringFormatterDeleteRegExp.removeNonUniqueChars('abc cde abc defg abc 34 abc sdrf'));
